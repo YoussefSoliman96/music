@@ -63,7 +63,7 @@
 
 - make index.js file inside src folder
   - src/index.js
-- make index.html inside templates folder and add HTML boilerplate into it
+- make index.html inside frontend/templates folder and add HTML boilerplate into it
   - templates/index.html
 - add "load static" and add script tags to index.html
 - render index.html inside views.py in frontend folder
