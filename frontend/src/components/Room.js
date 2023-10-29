@@ -4,12 +4,11 @@ import { useParams } from "react-router-dom";
 
 const Room = () => {
   const { roomCode } = useParams();
-  const initialState = {
+  const [roomData, setRoomData] = useState({
     votesToSkip: 2,
     guestCanPause: false,
     isHost: false,
-  };
-  const [roomData, setRoomData] = useState(initialState);
+  });
 
   useEffect(() => {
     fetch("/api/get-room" + "?code=" + roomCode)
