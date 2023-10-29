@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button, Typography, SliderValueLabel } from "@mui/material";
 import { Link } from "react-router-dom";
+import CreateRoomPage from "./CreateRoomPage";
 
 const Room = (clearRoomCodeCallback) => {
   console.log(clearRoomCodeCallback);
@@ -12,6 +13,7 @@ const Room = (clearRoomCodeCallback) => {
     votesToSkip: 2,
     guestCanPause: false,
     isHost: false,
+    showSettings: false,
   });
 
   useEffect(() => {
@@ -49,6 +51,55 @@ const Room = (clearRoomCodeCallback) => {
     });
   };
 
+  const updateShowSettings = (value) => {
+    setRoomData({
+      ...roomData,
+      showSettings: value,
+    });
+  };
+
+  const renderSettings = () => {
+    return (
+      <Grid container spacing={1}>
+        <Grid item xs={12} align="center">
+          <CreateRoomPage
+            update={true}
+            votesToSkip={roomData.votesToSkip}
+            guestCanPause={roomData.guestCanPause}
+            roomCode={roomCode}
+            updateCallback={() => {}}
+          />
+        </Grid>
+        <Grid item xs={12} align="center">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => updateShowSettings(false)}
+          >
+            Close
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  };
+
+  const renderSettingsButton = () => {
+    return (
+      <Grid item xs={12} align="center">
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ m: 1 }}
+          onClick={() => updateShowSettings(true)}
+        >
+          Settings
+        </Button>
+      </Grid>
+    );
+  };
+  if (roomData.showSettings) {
+    return renderSettings();
+  }
   return (
     <>
       <Grid item xs={12} align="center">
@@ -67,6 +118,7 @@ const Room = (clearRoomCodeCallback) => {
       <Grid item xs={12} align="center">
         <Typography variant="h6">Host: {roomData.isHost.toString()}</Typography>
       </Grid>
+      {roomData.isHost ? renderSettingsButton() : null}
       <Grid item xs={12} align="center">
         <Button
           variant="contained"
