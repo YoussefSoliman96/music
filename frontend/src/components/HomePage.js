@@ -12,7 +12,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-export default function HomePage() {
+const HomePage = () => {
   const [roomCode, setRoomCode] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function HomePage() {
         });
     }
     autoEnter();
-  }, []);
+  }, [roomCode]);
 
   function renderHomePage() {
     return (
@@ -47,6 +47,11 @@ export default function HomePage() {
       </Grid>
     );
   }
+
+  const clearRoomCode = () => {
+    setRoomCode(null);
+  };
+
   return (
     <Router>
       <Routes>
@@ -59,8 +64,12 @@ export default function HomePage() {
         />
         <Route path="/join" element={<JoinRoomPage />} />
         <Route path="/create" element={<CreateRoomPage />} />
-        <Route path="/room/:roomCode" element={<Room />} />
+        <Route
+          path="/room/:roomCode"
+          element={<Room clearRoomCodeCallback={clearRoomCode} />}
+        />
       </Routes>
     </Router>
   );
-}
+};
+export default HomePage;
