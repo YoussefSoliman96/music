@@ -10,7 +10,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-import { link, useNavigate } from "react-router-dom";
+import { Link, link, useNavigate } from "react-router-dom";
 
 const CreateRoomPage = () => {
   let defaultVotes = 2;
@@ -105,7 +105,7 @@ const CreateRoomPage = () => {
         </Button>
       </Grid>
       <Grid item xs={12} align="center">
-        <Button color="secondary" variant="contained">
+        <Button color="secondary" variant="contained" to="/" component={Link}>
           Back
         </Button>
       </Grid>
