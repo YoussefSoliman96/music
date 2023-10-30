@@ -23,7 +23,7 @@ const CreateRoomPage = ({
   updateCallBack,
 }) => {
   const [backData, setBackData] = useState({
-    guestCanPause: guestCanPause,
+    guestCanPause: guestCanPause ? guestCanPause : false,
     votesToSkip: votesToSkip ? votesToSkip : 2,
     update: update,
     roomCode: roomCode,
@@ -41,7 +41,7 @@ const CreateRoomPage = ({
   // Using bind to change pausing state
   const handleGuestCanPauseChange = (e) => {
     setBackData((data) => ({
-      ...data,
+      ...backData,
       guestCanPause: e.target.value == "true" ? true : false,
     }));
   };
@@ -160,9 +160,7 @@ const CreateRoomPage = ({
           </FormHelperText>
           <RadioGroup
             row
-            defaultValue={
-              backData.guestCanPause ? backData.guestCanPause : true
-            }
+            defaultValue={false}
             value={backData.guestCanPause ? backData.guestCanPause : false}
             onChange={handleGuestCanPauseChange}
           >

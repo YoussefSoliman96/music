@@ -14,6 +14,7 @@ const Room = ({ clearRoomCodeCallback }) => {
     isHost: false,
     showSettings: false,
   });
+  const [song, setSong] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
 
   const getRoomDetails = () => {
@@ -64,10 +65,25 @@ const Room = ({ clearRoomCodeCallback }) => {
   }, [roomCode]);
 
   useEffect(() => {
-    if (authenticated == false) {
+    if (authenticated === false) {
       authenticateSpotify();
     }
   }, []);
+
+  const getCurrentSong = () => {
+    fetch("/spotify/current-song")
+      .then((response) => {
+        if (!response.ok) {
+          return {};
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setSong(data);
+        console.log(data);
+      });
+  };
 
   const authenticateSpotify = () => {
     fetch("/spotify/is-authenticated")
@@ -152,17 +168,6 @@ const Room = ({ clearRoomCodeCallback }) => {
         <Typography variant="h4" component={"h4"}>
           Code: {roomCode}
         </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography variant="h6">Votes: {roomData.votesToSkip}</Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography variant="h6">
-          Guest Control: {roomData.guestCanPause.toString()}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography variant="h6">Host: {roomData.isHost.toString()}</Typography>
       </Grid>
       {roomData.isHost ? renderSettingsButton() : null}
       <Grid item xs={12} align="center">

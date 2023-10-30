@@ -3,7 +3,8 @@ from django.utils import timezone
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
 from requests import post, put, get
-
+import base64
+import requests
 
 BASE_URL = "https://api.spotify.com/v1/me/"
 
@@ -44,22 +45,22 @@ def is_spotify_authenticated(session_id):
         return True
 
     return False
-
-
+            
 def refresh_spotify_token(session_id):
     refresh_token = get_user_tokens(session_id).refresh_token
-
+    encoded = base64.b64encode((CLIENT_ID + ":" + CLIENT_SECRET).encode("ascii")).decode("ascii")
     response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'refresh_token',
         'refresh_token': refresh_token,
         'client_id': CLIENT_ID,
-        'client_secret': CLIENT_SECRET
+        'client_secret': CLIENT_SECRET,
+        'cache': 'no-cache'
     }).json()
+    
 
     access_token = response.get('access_token')
     token_type = response.get('token_type')
     expires_in = response.get('expires_in')
-    refresh_token = response.get('refresh_token')
 
     update_or_create_user_tokens(
         session_id, access_token, token_type, expires_in, refresh_token)
