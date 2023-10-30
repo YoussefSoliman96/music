@@ -23,8 +23,8 @@ const CreateRoomPage = ({
   updateCallBack,
 }) => {
   const [backData, setBackData] = useState({
-    guestCanPause: false,
-    votesToSkip: votesToSkip,
+    guestCanPause: guestCanPause,
+    votesToSkip: votesToSkip ? votesToSkip : 2,
     update: update,
     roomCode: roomCode,
   });
@@ -160,7 +160,9 @@ const CreateRoomPage = ({
           </FormHelperText>
           <RadioGroup
             row
-            defaultValue={false}
+            defaultValue={
+              backData.guestCanPause ? backData.guestCanPause : true
+            }
             value={backData.guestCanPause ? backData.guestCanPause : false}
             onChange={handleGuestCanPauseChange}
           >
