@@ -5,8 +5,7 @@ import { Grid, Button, Typography, SliderValueLabel } from "@mui/material";
 import { Link } from "react-router-dom";
 import CreateRoomPage from "./CreateRoomPage";
 
-const Room = (clearRoomCodeCallback) => {
-  console.log(clearRoomCodeCallback);
+const Room = ({ clearRoomCodeCallback }) => {
   const navigate = useNavigate();
   const { roomCode } = useParams();
   const [roomData, setRoomData] = useState({
@@ -16,10 +15,31 @@ const Room = (clearRoomCodeCallback) => {
     showSettings: false,
   });
 
+  const getRoomDetails = () => {
+    fetch("/api/get-room" + "?code=" + roomCode)
+      .then((response) => {
+        if (!response.ok) {
+          clearRoomCodeCallback; // clears roomCode state in HomePage
+          window.location.href = "/";
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        if (data) {
+          setRoomData({
+            ...roomData,
+            votesToSkip: data.votes_to_skip,
+            guestCanPause: data.guest_can_pause,
+            isHost: data.is_host,
+          });
+        }
+      });
+  };
+
   useEffect(() => {
     fetch("/api/get-room" + "?code=" + roomCode)
       .then((response) => {
-        console.log(response);
         if (!response.ok) {
           clearRoomCodeCallback; // clears roomCode state in HomePage
           window.location.href = "/";
@@ -67,7 +87,7 @@ const Room = (clearRoomCodeCallback) => {
             votesToSkip={roomData.votesToSkip}
             guestCanPause={roomData.guestCanPause}
             roomCode={roomCode}
-            updateCallback={() => {}}
+            updateCallBack={getRoomDetails}
           />
         </Grid>
         <Grid item xs={12} align="center">
@@ -112,7 +132,7 @@ const Room = (clearRoomCodeCallback) => {
       </Grid>
       <Grid item xs={12} align="center">
         <Typography variant="h6">
-          Guest: {roomData.guestCanPause.toString()}
+          Guest Control: {roomData.guestCanPause.toString()}
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
