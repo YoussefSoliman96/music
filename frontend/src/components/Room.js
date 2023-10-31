@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Grid, Button, Typography, SliderValueLabel } from "@mui/material";
 import { Link } from "react-router-dom";
 import CreateRoomPage from "./CreateRoomPage";
+import MusicPlayer from "./MusicPlayer";
 
 const Room = ({ clearRoomCodeCallback }) => {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ const Room = ({ clearRoomCodeCallback }) => {
     isHost: false,
     showSettings: false,
   });
-  const [song, setSong] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
 
   const getRoomDetails = () => {
@@ -47,6 +47,7 @@ const Room = ({ clearRoomCodeCallback }) => {
       .then((response) => {
         if (!response.ok) {
           clearRoomCodeCallback; // clears roomCode state in HomePage
+          getCurrentSong;
           window.location.href = "/";
         } else {
           return response.json();
@@ -65,9 +66,10 @@ const Room = ({ clearRoomCodeCallback }) => {
           authenticateSpotify();
         }
       });
-    const interval = setInterval(getCurrentSong, 1000);
+    setInterval(getCurrentSong, 1000);
   }, [roomCode]);
 
+  const [song, setSong] = useState({});
   const getCurrentSong = () => {
     fetch("/spotify/current-song")
       .then((response) => {
@@ -79,7 +81,6 @@ const Room = ({ clearRoomCodeCallback }) => {
       })
       .then((data) => {
         setSong(data);
-        console.log(data);
       });
   };
 
@@ -167,6 +168,7 @@ const Room = ({ clearRoomCodeCallback }) => {
           Code: {roomCode}
         </Typography>
       </Grid>
+      <MusicPlayer song={song}></MusicPlayer>
       {roomData.isHost ? renderSettingsButton() : null}
       <Grid item xs={12} align="center">
         <Button
