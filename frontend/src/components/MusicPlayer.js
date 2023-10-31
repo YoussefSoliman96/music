@@ -56,6 +56,7 @@ const MusicPlayer = ({ song }) => {
                 {song.is_playing ? <PauseIcon /> : <PlayArrowIcon />}
               </IconButton>
               <IconButton onClick={skipSong}>
+                {song.votes} / {song.votes_required}
                 <SkipNextIcon />
               </IconButton>
             </div>
