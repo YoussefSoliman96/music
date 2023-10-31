@@ -61,14 +61,12 @@ const Room = ({ clearRoomCodeCallback }) => {
             isHost: data.is_host,
           });
         }
+        if (authenticated === false) {
+          authenticateSpotify();
+        }
       });
+    const interval = setInterval(getCurrentSong, 1000);
   }, [roomCode]);
-
-  useEffect(() => {
-    if (authenticated === false) {
-      authenticateSpotify();
-    }
-  }, []);
 
   const getCurrentSong = () => {
     fetch("/spotify/current-song")
