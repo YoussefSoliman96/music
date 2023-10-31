@@ -66,7 +66,7 @@ const Room = ({ clearRoomCodeCallback }) => {
           authenticateSpotify();
         }
       });
-    setInterval(getCurrentSong, 1000);
+    const interval = setInterval(getCurrentSong, 100);
   }, [roomCode]);
 
   const [song, setSong] = useState({});

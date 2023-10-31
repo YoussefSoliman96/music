@@ -10,6 +10,22 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 
+const pauseSong = () => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  };
+  fetch("/spotify/pause", requestOptions);
+};
+
+const playSong = () => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  };
+  fetch("/spotify/play", requestOptions);
+};
+
 const MusicPlayer = ({ song }) => {
   console.log(song);
   if (song) {
@@ -28,7 +44,7 @@ const MusicPlayer = ({ song }) => {
               {song.artist}
             </Typography>
             <div>
-              <IconButton>
+              <IconButton onClick={song.is_playing ? pauseSong : playSong}>
                 {song.is_playing ? <PauseIcon /> : <PlayArrowIcon />}
               </IconButton>
               <IconButton>
