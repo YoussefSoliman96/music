@@ -1,11 +1,27 @@
 # VibeUs
 
+## Distinctiveness and Complexity:
+
+### Requirements:
+
+This project utilizes:
+
+- Python on the backend using Django framework:
+  - 3 models were used: Room, SpotifyToken and Vote.
+- HTML, CSS and Javascript on the frontend using React framework.
+- This app is mobile responsive.
+- File content: Files [Go to Files](#files).
+- How to run this application: Setup [Go to Setup](#setup).
+- All packages that need to be installed (Dependencies): requirements.txt
+  [Go to Dependencies](#dependencies).
+
 ## Table of content:
 
 - Project Description
 - Stack and Frameworks
 - Features
 - Dependencies
+- Setup
 - Instructions
 
 ## Project Description:
@@ -16,7 +32,7 @@ CS50's Web Programming with Python and JavaScript (CS50W)
 
 ### Theme:
 
-This project allows users to either create a room or join other user's room where they all can listen to music together and control what's happening according to their liking using customized settings
+This project allows users to either create a room or join other user's room where they all can listen to music together and control what's happening according to their liking using customized settings.
 
 ### Overview:
 
@@ -29,7 +45,7 @@ This project was developed using:
 
 - Frontend: HTML, CSS and Javascript
 - Backend: Python
-- Frameworks: Django, REST, Material UI
+- Frameworks: React, Django, REST, Material UI
 
 ## Features:
 
@@ -53,6 +69,55 @@ This project was developed using:
 - "react-dom": "^18.2.0",
 - "webpack": "^5.89.0",
 - "webpack-cli": "^5.1.4"
+- "@babel/plugin-proposal-class-properties": "^7.18.6",
+- "@emotion/react": "^11.11.1",
+- "@emotion/styled": "^11.11.0",
+- "@mui/icons-material": "^5.14.14",
+- "@mui/material": "^5.14.14"
+
+## Setup:
+
+- git clone git@github.com:YoussefSoliman96/vibeus.git
+- First terminal
+  > python manage.py runserver
+- Second terminal:
+  > cd frontend
+  > npm run dev
+- Install project dependencies by running pip install -r requirements.txt
+- Make and apply migrations by running python manage.py makemigrations and python manage.py migrate.
+
+## Files:
+
+`Note: All configuration related files are explained in the [instructions section](#instructions)`
+
+- `music` - Main project directory.
+  - `urls.py` contains all main urls (homepage - api - spotify API - Admin panel).
+
+### 3 Apps were made: api, frontend and spotify
+
+- `api` - Backend directory.
+  - `models.py` - the Room model including all the info in the room and settings pages.
+  - `serializers.py` - serializer classes related to the REST Framework to convert models and querysets to native python code.
+  - `tests.py` - for unit tests to be added later.
+  - `urls.py` - urls to the backend info, they show all the data in the backend during runtime.
+  - `views.py` - all backend views and the logic behind user interactions.
+- `frontend` - Frontend directory.
+  - `src` - frontend source files.
+    - `src/components` - frontend components.
+      - `CreateRoomPage.js` - component used to display the (Create Room) page and modified to (Update Room) page using React depending.
+      - `HomePage.js` - main page layout .
+      - `info.js` - information component.
+      - `JoinRoomPage.js` - component used to display the (Join Room) page.
+      - `MusicPlayer.js` - the music player component
+      - `Room.js` - the room component which the user is redirected to after creating or joinin a room.
+      - `withRouter.js` - react router hooks.
+    - `src/index.js` - background animations.
+  - `static` - static content (CSS and images)
+  - `templates/index.html` - main application layout where all React components are rendered.
+- `spotify` - contains all spotify API related files
+  - `models.py` - models containing all information we need from the spotify API for our application
+  - `util.py` - utility functions to help excute the API calls
+  - `views.py` - views that control the the data we get from the API
 
 ## Instructions:
 
@@ -96,9 +161,6 @@ This project was developed using:
   - npm i webpack webpack-cli --save-dev
   - npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
   - npm i react react-dom --save-dev
-  - old material ui
-    - npm install @mui/material @emotion/react @emotion/styled --legacy-peer-deps
-    - npm install @mui/icons-material --legacy-peer-deps
   - material ui V5
     - npm install @mui/material @emotion/react @emotion/styled
     - npm install @mui/icons-material
