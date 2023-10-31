@@ -1,4 +1,58 @@
-# music
+# VibeUs
+
+## Table of content:
+
+- Project Description
+- Stack and Frameworks
+- Features
+- Dependencies
+- Instructions
+
+## Project Description:
+
+### Course:
+
+CS50's Web Programming with Python and JavaScript (CS50W)
+
+### Theme:
+
+This project allows users to either create a room or join other user's room where they all can listen to music together and control what's happening according to their liking using customized settings
+
+### Overview:
+
+VibeUs is a control room app for spotify where only the Host has access to room settings and can decide whether guests can pause, play or skip songs.
+Host can also decide how many votes are required to skip a song.
+
+## Stack and Frameworks:
+
+This project was developed using:
+
+- Frontend: HTML, CSS and Javascript
+- Backend: Python
+- Frameworks: Django, REST, Material UI
+
+## Features:
+
+- Authentication
+- Authorization
+- REST API
+- Spotify API
+
+## Code Style:
+
+- Prettier
+- Camel Case
+
+## Dependencies:
+
+- "@babel/core": "^7.23.2",
+- "@babel/preset-env": "^7.23.2",
+- "@babel/preset-react": "^7.22.15",
+- "babel-loader": "^9.1.3",
+- "react": "^18.2.0",
+- "react-dom": "^18.2.0",
+- "webpack": "^5.89.0",
+- "webpack-cli": "^5.1.4"
 
 ## Instructions:
 
@@ -53,11 +107,11 @@
 
 - make the configuration scripts, make these files inside frontend folder:
 
-  - babel.config.json --> script: https://github.com/techwithtim/Music-Controller-Web-App-Tutorial/blob/main/Tutorial%201%20-%204/frontend/babel.config.json
+  - babel.config.json --> script: https://github.com/YoussefSoliman96/vibeus/blob/main/frontend/babel.config.json
 
-  - webpack.config.js --> script: https://github.com/techwithtim/Music-Controller-Web-App-Tutorial/blob/main/Tutorial%201%20-%204/frontend/webpack.config.js
+  - webpack.config.js --> script: https://github.com/YoussefSoliman96/vibeus/blob/main/frontend/webpack.config.js
 
-  - add these 2 scripts to package.json --> script: https://github.com/techwithtim/Music-Controller-Web-App-Tutorial/blob/main/Tutorial%201%20-%204/frontend/package.json
+  - add these 2 scripts to package.json --> script: https://github.com/YoussefSoliman96/vibeus/blob/main/frontend/package.json
     - "dev": "webpack --mode development --watch",
     - "build": "webpack --mode production"
 
