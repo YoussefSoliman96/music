@@ -88,7 +88,8 @@ This project was developed using:
 
 ## Files:
 
-`Note: All configuration related files are explained in the [instructions section](#instructions)`
+`Note: All configuration related files are explained in the instructions section`
+[Instructions](#instructions)
 
 - `music` - Main project directory.
   - `urls.py` contains all main urls (homepage - api - spotify API - Admin panel).
