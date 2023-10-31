@@ -10,6 +10,14 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 
+const skipSong = () => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  };
+  fetch("/spotify/skip", requestOptions);
+};
+
 const pauseSong = () => {
   const requestOptions = {
     method: "PUT",
@@ -47,7 +55,7 @@ const MusicPlayer = ({ song }) => {
               <IconButton onClick={song.is_playing ? pauseSong : playSong}>
                 {song.is_playing ? <PauseIcon /> : <PlayArrowIcon />}
               </IconButton>
-              <IconButton>
+              <IconButton onClick={skipSong}>
                 <SkipNextIcon />
               </IconButton>
             </div>
