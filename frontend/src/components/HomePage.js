@@ -4,7 +4,7 @@ import CreateRoomPage from "./CreateRoomPage";
 import JoinRoomPage from "./JoinRoomPage";
 import Room from "./Room";
 import Info from "./info";
-import { Grid, Button, ButtonGroup, Typography } from "@mui/material";
+import { Box, Grid, Button, ButtonGroup, Typography } from "@mui/material";
 import {
   BrowserRouter as Router,
   Routes,
@@ -30,6 +30,24 @@ const HomePage = () => {
   function renderHomePage() {
     return (
       <Grid container spacing={3}>
+        <Grid item display={"flex"}>
+          <Box
+            component="img"
+            height={"600px"}
+            width={"600px"}
+            ml={"700px"}
+            alt="The house from the offer."
+            src="https://o.remove.bg/downloads/b908e2d4-9bd5-472a-8185-3a94fddd3d4b/pngtree-people-sing-png-image_3248914-removebg-preview.png"
+          />
+          <Box
+            component="img"
+            height={"600px"}
+            width={"600px"}
+            mr={"700px"}
+            alt="The house from the offer."
+            src="https://o.remove.bg/downloads/50979c90-e4ff-481a-b9d5-45ff023f4d51/png-transparent-people-sing-sing-a-song-people-microphone-removebg-preview.png"
+          />
+        </Grid>
         <Grid item xs={12} align="center">
           <Typography variant="h3" compact="h3">
             VibeUs

@@ -29,7 +29,10 @@ export default function Info(props) {
     <Grid container spacing={1}>
       <Grid item xs={12} align="center">
         <Typography component="h4" variant="h4">
-          What is VibeUs?
+          What is VibeUs? VibeUs is a control room app for spotify where only
+          the Host has access to room settings and can decide whether guests can
+          pause, play or skip songs. Host can also decide how many votes are
+          required to skip a song.
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
