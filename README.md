@@ -6,16 +6,15 @@ A Music control room system using Django and React, This is the final project fo
 
 ## Distinctiveness and Complexity:
 
-### Project Description:
+### Project Structure:
 
-This project consists of 3 main parts: frontend, backend and Spotify API.
-Frontend: Used functional components for this project as they are more compatible with the latest React versions, each feature was presented using a separate component.
-Backend: Used Python models, class serializers and React Router to control everything on the backend including Data and Routing.
-Spotify API:
-
-- Used the Spotify API to authenticate users using their spotify account and giving them an authentication token.
-- The authentication token is automatically used again after the expiration period to avoid requesting more tokens unnecessarily.
-- Data is being fetched continuously from the Room creator's Spotify player and sent to the main room.
+This project consists of 3 main parts: frontend, backend and Spotify API:
+- Frontend: Used functional components for this project as they are more compatible with the latest React versions, each feature was presented using a separate component.
+- Backend: Used Python models, class serializers and React Router to control everything on the backend including Data and Routing.
+- Spotify API:
+  - Used the Spotify API to authenticate users using their spotify account and giving them an authentication token.
+  - The authentication token is automatically used again after the expiration period to avoid requesting more tokens unnecessarily.
+  - Data is being fetched continuously from the Room creator's Spotify player and sent to the main room.
 
 ### Motivation
 
@@ -52,12 +51,12 @@ This project utilizes:
 
 ## Table of content:
 
-- Project Description
-- Stack and Frameworks
-- Features
-- Dependencies
-- Setup
-- Instructions
+- [Project Description](#project-description)
+- [Stack and Frameworks](#stack-and-frameworks)
+- [Features](#features)
+- [Dependencies](#dependencies)
+- [Setup](#setup)
+- [Instructions](#instructions)
 
 ## Project Description:
 
